@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
@@ -43,17 +44,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Composable
 fun App(modifier: Modifier = Modifier) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center, modifier = modifier.fillMaxSize()) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceAround, modifier = modifier
+        .fillMaxSize()
+        .then(Modifier.padding(24.dp))) {
         Header()
+        SumText()
+        ButtonGroup()
+        Credits()
     }
 }
 
@@ -64,8 +62,8 @@ fun AppPreview() {
 }
 
 @Composable
-fun Header(modifier: Modifier = Modifier) {
-    Row(horizontalArrangement = Arrangement.Center) {
+fun Header() {
+    Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
         Logo()
         Column {
             HeaderText(text = "Universidad de Sonora")
@@ -80,20 +78,40 @@ fun Logo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun HeaderText(text: String, modifier: Modifier = Modifier) {
-    Text(text = text, fontSize = 35.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
+fun HeaderText(text: String) {
+    Text(text = text, fontSize = 32.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
 }
 
 @Composable
-fun UnisonButton(text: String, modifier: Modifier = Modifier) {
+fun SumText() {
+    Text(text = "10 + 20", fontSize = 24.sp, textAlign = TextAlign.Center)
+}
+
+@Composable
+fun UnisonButton(text: String) {
     Button(onClick = { /*TODO*/ },
         colors = ButtonColors(
             containerColor = colorResource(id = R.color.unison_azul),
             contentColor = Color.White,
             disabledContentColor = Color.White,
             disabledContainerColor = Color.LightGray
-        )
+        ),
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Text(text = text)
     }
+}
+
+@Composable
+fun ButtonGroup() {
+    Column {
+        UnisonButton(text = "30")
+        UnisonButton(text = "25")
+        UnisonButton(text = "40")
+    }
+}
+
+@Composable
+fun Credits() {
+    Text(text = "Luis Daniel Quiroz Osuna", fontSize = 16.sp)
 }
