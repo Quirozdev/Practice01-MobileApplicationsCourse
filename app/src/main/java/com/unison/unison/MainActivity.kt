@@ -65,9 +65,9 @@ fun AppPreview() {
 fun Header() {
     Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
         Logo()
-        Column {
-            HeaderText(text = "Universidad de Sonora")
-            HeaderText(text = "Departamento de Ingeniería Industrial")
+        Column(modifier = Modifier.padding(horizontal = 8.dp)) {
+            HeaderText(text = "Universidad de Sonora", size = 22, color = colorResource(id = R.color.unison_dorado))
+            HeaderText(text = "Departamento de Ingeniería Industrial", size = 13, color = Color.Black)
         }
     }
 }
@@ -78,8 +78,8 @@ fun Logo(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun HeaderText(text: String) {
-    Text(text = text, fontSize = 32.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
+fun HeaderText(text: String, size: Int, color: Color) {
+    Text(text = text, fontSize = size.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold, color = color)
 }
 
 @Composable
